@@ -15,7 +15,7 @@ for i in range(0,class_num):
     if not os.path.exists(classes[i]):
         os.makedirs(classes[i])
 
-#Code to download files
+#Code to download images from image url column and place it in appropriate class folders.
 import urllib.request
 nulllist=list()
 for filenumber in range(24589,train.shape[0]):
