@@ -1,5 +1,5 @@
 #A simple file for TFIDF. I created this because, TFIDF of sklearn was not giving expected results by reducing TFIDF score for frequent 
-#words and increasing for rare words for some reason.
+#words and increasing for rare words for some reason. Instead of debug/ I though build my own.
 #Usage: Place this file in your execution diectory. https://github.com/meethariprasad/phd/blob/master/TF_IDF.py
 # In your code add 
 #from TF_IDF import *
