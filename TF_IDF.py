@@ -1,8 +1,11 @@
 #A simple file for TFIDF. I created this because, TFIDF of sklearn was not giving expected results by reducing TFIDF score for frequent 
 #words and increasing for rare words for some reason.
 #Usage: Place this file in your execution diectory. https://github.com/meethariprasad/phd/blob/master/TF_IDF.py
-# In your code add from TF_IDF import *
-#Input: List of text documents. Output: TFIDF Dataframe. Pre processing can be altered in doclist2_cleanlist
+# In your code add 
+#from TF_IDF import *
+#Input: List of text documents
+#get_tf_idf_frame(documents) 
+#Output: TFIDF Dataframe. Pre processing can be altered in doclist2_cleanlist
 
 def doclist2_cleanlist(document_list):
     clean_doc_list=[]
