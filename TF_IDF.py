@@ -4,7 +4,7 @@
 # In your code add 
 #from TF_IDF import *
 #Input: List of text documents
-#get_tf_idf_frame(documents) 
+#get_tf_idf_frame(documents,binary_tf=True) 
 #Output: TFIDF Dataframe. Pre processing can be altered in doclist2_cleanlist
 
 def doclist2_cleanlist(document_list):
