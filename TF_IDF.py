@@ -36,8 +36,6 @@ def tf_of_words_per_doc(documents):
             doc_word_TF_Doc_word.append(list([doc_id,word,TF_Doc1_word]))
     return(doc_word_TF_Doc_word)
 
-TF_Frame=pd.DataFrame(tf_of_words_per_doc(documents),columns=["doc","word","TF"])
-
 def idf_words(documents):
     Number_of_documents=len(documents)
     idf_words=[]
@@ -59,8 +57,6 @@ def idf_words(documents):
         idf_words.append(list([word,Number_of_documents,number_of_documents_word_appears_count,IDF_Doc_word]))
 
     return(idf_words)
-
-IDF_Frame=pd.DataFrame(idf_words(documents),columns=["word","Number_of_documents","number_of_documents_word_appears_count","idf"])
 
 def get_tf_idf_frame(documents):
     documents=doclist2_cleanlist(documents)
