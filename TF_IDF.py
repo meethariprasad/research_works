@@ -40,6 +40,7 @@ def tf_of_words_per_doc(documents):
     return(doc_word_TF_Doc_word)
 
 def idf_words(documents):
+    import math
     Number_of_documents=len(documents)
     idf_words=[]
     
@@ -62,6 +63,7 @@ def idf_words(documents):
     return(idf_words)
 
 def get_tf_idf_frame(documents):
+    import pandas as pd
     documents=doclist2_cleanlist(documents)
     TF_Frame=pd.DataFrame(tf_of_words_per_doc(documents),columns=["doc","word","TF"])
     IDF_Frame=pd.DataFrame(idf_words(documents),columns=["word","Number_of_documents","number_of_documents_word_appears_count","idf"])
