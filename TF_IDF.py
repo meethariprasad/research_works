@@ -35,7 +35,8 @@ def tf_of_words_per_doc(documents):
                        count = count + 1 
                 return count 
             number_of_time_word_repeated_in_current_doc=count_if_found(doc,word)
-            TF_Doc1_word=number_of_time_word_repeated_in_current_doc/Number_of_words_in_current_doc
+            import math
+            TF_Doc1_word=math.log(1+(number_of_time_word_repeated_in_current_doc/Number_of_words_in_current_doc))
             doc_word_TF_Doc_word.append(list([doc_id,word,TF_Doc1_word]))
     return(doc_word_TF_Doc_word)
 
@@ -62,11 +63,16 @@ def idf_words(documents):
 
     return(idf_words)
 
-def get_tf_idf_frame(documents):
+def get_tf_idf_frame(documents,binary_tf):
     import pandas as pd
+    import numpy as np
     documents=doclist2_cleanlist(documents)
     TF_Frame=pd.DataFrame(tf_of_words_per_doc(documents),columns=["doc","word","TF"])
     IDF_Frame=pd.DataFrame(idf_words(documents),columns=["word","Number_of_documents","number_of_documents_word_appears_count","idf"])
     TF_IDF_Master_Frame=TF_Frame.merge(IDF_Frame,how="left",left_on="word",right_on="word").sort_values("doc")
-    TF_IDF_Master_Frame["TF_IDF"]=TF_IDF_Master_Frame["TF"]*TF_IDF_Master_Frame["idf"]
+    TF_IDF_Master_Frame["Term_Existence"]=np.where(TF_IDF_Master_Frame['TF']>0, 1, 0)
+    if (binary_tf==True):
+        TF_IDF_Master_Frame["TF_IDF"]=TF_IDF_Master_Frame["Term_Existence"]*TF_IDF_Master_Frame["idf"]
+    else:
+        TF_IDF_Master_Frame["TF_IDF"]=TF_IDF_Master_Frame["TF"]*TF_IDF_Master_Frame["idf"]
     return (TF_IDF_Master_Frame)
