@@ -4,20 +4,20 @@ def scope_to_keyphrase(text):
     r.extract_keywords_from_text(text)
     return (' '.join(r.get_ranked_phrases()[0:10]))
 
-def tech_info(supply_list,query_list):
+def google_search_and_return_results(supply_list,query_list):
     import urllib
     from bs4 import BeautifulSoup
     import requests
     import webbrowser
     import re
 
-    supply_info_base=[]
+    tech_base=[]
     for supply in supply_list:
         
         supply=re.sub('[^A-Za-z0-9]+', ' ', supply)
         supply=re.sub(r'\d+', '', supply)
         print (supply)
-        supply_info=[]
+        tech_info=[]
         for base_query in query_list:
             ####Query Block##########
             base_query=base_query+' '+supply
@@ -45,14 +45,15 @@ def tech_info(supply_list,query_list):
             query_results=re.sub('[^A-Za-z0-9]+', ' ', query_results)
             query_results=''.join(' ' + char if char.isupper() else char for char in query_results).strip()
             ####Result Collection Block##########
-            supply_info.append([supply,base_query,query_results])
-        supply_info_base.append(supply_info)
-        flat_list=[item for sublist in supply_info_base for item in sublist]
+            tech_info.append([supply,base_query,query_results])
+        tech_base.append(tech_info)
+        flat_list=[item for sublist in tech_base for item in sublist]
         return_frame=pd.DataFrame(flat_list)
         return_frame.columns=['Supply','Query','Results']
     return (return_frame)
             
-tech_information=tech_info(supply_list=['Windows','C'],query_list=['What is Software'
-                                                                   ,'What are the related Software'])
+search_information=google_search_and_return_results(supply_list=['Windows','C'],query_list=['What is Software'
+                                                                   ,'What are the Alternate Software'
+                                                                    ,'What is the job description'])
 pd.set_option('display.max_colwidth', -1)
-tech_information
+search_information
